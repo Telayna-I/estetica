@@ -1,2 +1,2 @@
-export * from "./sidebar/Sidebar";
+export * from "./iaSidebar/NewSidebar";
 export * from "./title/Title";

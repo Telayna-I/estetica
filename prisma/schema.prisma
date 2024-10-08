@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  admin
+  doctor
+  secretary
+}
+
+enum Gender {
+  man
+  woman
+}
+
+model User {
+  id        String      @id @default(uuid())
+  name      String
+  email     String      @unique
+  password  String
+  role      Role        @default(secretary)
+  status    Boolean     @default(true)
+  Treatment Treatment[]
+}
+
+model Patient {
+  id              String      @id @default(uuid())
+  name            String
+  phone           String
+  gender          Gender
+  age             Int
+  allergies       String?
+  takeMedicine    String?
+  recentTreatment String?
+  observations    String?
+  Treatment       Treatment[]
+}
+
+model Treatment {
+  id             String   @id @default(uuid())
+  tipo           String
+  todo           String
+  observations   String?
+  price          Float
+  upfrontPayment Float?
+  date           String
+  hour           String
+  finished       Boolean  @default(false)
+  dateOfTheShift DateTime @default(now())
+
+  // Relaciones
+  TreatmentImage TreatmentImage[]
+
+  patient   Patient @relation(fields: [patientId], references: [id])
+  patientId String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
+
+model TreatmentImage {
+  id  Int    @id @default(autoincrement())
+  url String
+
+  // Relaciones
+  treatment   Treatment @relation(fields: [treatmentId], references: [id])
+  treatmentId String
+}

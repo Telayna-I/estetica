@@ -1,12 +1,20 @@
-import { Sidebar } from "../components";
+import { auth } from "@/auth.config";
+import { redirect } from "next/navigation";
+import SideNavigation from "../components/iaSidebar/NewSidebar";
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+	const session = await auth();
+
+	if (!session?.user) {
+		redirect("/auth/login");
+	}
+
 	return (
-		<div className='bg-slate-100 overflow-y-scroll w-screen h-screen antialiased text-slate-300 selection:bg-blue-600 selection:text-white'>
+		<div className='bg-principal overflow-y-scroll antialiased text-slate-300 selection:bg-blue-600 selection:text-white'>
 			<div className='flex'>
-				<Sidebar />
+				<SideNavigation />
 
-				<div className='w-full text-slate-900 bg-slate-300 px-5'>{children}</div>
+				<div className='w-full text-primary_text bg-principal px-10'>{children}</div>
 			</div>
 		</div>
 	);
