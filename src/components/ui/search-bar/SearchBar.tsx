@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { patientSearch } from "@/app/actions";
+import { patientSearch } from "@/actions";
 import { FaSearch, FaTimes } from "react-icons/fa";
 import { useSearchStore } from "@/store";
 import { useRouter } from "next/navigation";

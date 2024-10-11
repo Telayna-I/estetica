@@ -1,11 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import { FiUsers, FiSettings } from "react-icons/fi";
+import { FiUsers, FiSettings, FiUserPlus } from "react-icons/fi";
 import { FaChartBar, FaRegClipboard } from "react-icons/fa";
 import { TbLogout } from "react-icons/tb";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { logout } from "@/app/actions";
+import { logout } from "@/actions";
 
 const SideNavigation = () => {
 	const [isCollapsed, setIsCollapsed] = useState(false);
@@ -26,10 +26,12 @@ const SideNavigation = () => {
 		{ name: "Pacientes", icon: <FiUsers />, path: "/pacientes" },
 		{ name: "Turnos", icon: <FaRegClipboard />, path: "/turnos" },
 		{ name: "Usuarios", icon: <FaChartBar />, path: "/usuarios" },
-		{ name: "Settings", icon: <FiSettings />, path: "" },
+		{ name: "Nuevo Usuario", icon: <FiUserPlus />, path: "/auth/new-account" },
+		// { name: "Settings", icon: <FiSettings />, path: "/" },
 		// { name: "Salir", icon: <TbLogout size={18} className='' /> },
 	];
 
+	// console.log(currentPath.);
 	return (
 		<nav
 			className={`flex flex-col border border-r-color_border/45 shadow-md min-h-screen p-4 transition-all duration-300 bg-white text-gray-800 ${
@@ -52,7 +54,7 @@ const SideNavigation = () => {
 							href={item.path}
 							onClick={toggleCollapse}
 							className={`flex items-center w-full p-2 rounded-md transition-colors duration-200 ${
-								currentPath === item.path
+								currentPath.includes(item.path)
 									? "bg-indigo-500 text-white"
 									: "hover:bg-gray-200"
 							}`}>

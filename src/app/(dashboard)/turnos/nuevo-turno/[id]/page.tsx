@@ -1,6 +1,6 @@
 import { Treatment } from "@prisma/client";
 import NewShiftForm from "../../ui/NewShiftForm";
-import { getShiftById } from "@/app/actions";
+import { getShiftById } from "@/actions";
 
 interface Props {
 	params: {

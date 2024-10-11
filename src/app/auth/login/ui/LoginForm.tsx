@@ -1,6 +1,6 @@
 "use client";
 
-import { authenticate } from "@/app/actions";
+import { authenticate } from "@/actions";
 import { Input } from "@nextui-org/react";
 
 import clsx from "clsx";

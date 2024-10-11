@@ -1,4 +1,4 @@
-import { getPaginatedPatients } from "@/app/actions";
+import { getPaginatedPatients } from "@/actions";
 import { Title } from "@/app/components";
 import { ButtonOutline } from "@/app/components/button/ButtonOutline";
 import { Pagination, SearchBar } from "@/components/ui";

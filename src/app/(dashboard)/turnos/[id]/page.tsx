@@ -1,4 +1,4 @@
-import { getShiftById } from "@/app/actions";
+import { getShiftById } from "@/actions";
 import { Title } from "@/app/components";
 import DateTimeDisplay from "@/components/ui/colck/DateTimeDisplay";
 import {

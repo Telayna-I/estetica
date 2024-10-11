@@ -1,4 +1,4 @@
-import { getPatientById } from "@/app/actions";
+import { getPatientById, getTreatmentsFromPatient } from "@/actions";
 import { Title } from "@/app/components";
 import { ButtonOutline } from "@/app/components/button/ButtonOutline";
 import Link from "next/link";
@@ -25,6 +25,8 @@ export default async function PatientDataDisplay({ params }: Props) {
 	const { id } = params;
 
 	const { ok, patient } = await getPatientById(id);
+
+	const { treatments } = await getTreatmentsFromPatient(id);
 
 	if (!ok) {
 		redirect("/pacientes");
@@ -147,6 +149,30 @@ export default async function PatientDataDisplay({ params }: Props) {
 						</div>
 						<p className='text-gray-800 text-sm'>{patient?.observations}</p>
 					</div>
+				</div>
+			</div>
+
+			<div className='flex flex-col w-full m-auto mt-5 p-6  rounded-lg shadow-md'>
+				<h2>Tratamientos</h2>
+				<div className='flex flex-col w-full px-4 py-4'>
+					{treatments.map((shift) => (
+						<div className=' w-full flex flex-col relative border border-black/5 rounded shadow-md px-5 py-8 mb-4'>
+							<span className='mb-3 flex items-center'>
+								<FaNotesMedical className='h-4 w-4 mr-2 text-indigo-500' />
+								Tratamiento:{" "}
+								<span className='font-semibold ml-1'> {shift.todo}</span>
+							</span>
+							<span className='mb-3 flex items-center'>
+								<FaCalendarAlt className='h-4 w-4 mr-2 text-red-500' />
+								Fecha: <span className='font-semibold ml-1'> {shift.date}</span>
+							</span>
+							<Link
+								className='btn-primary w-fit self-end'
+								href={`/turnos/${shift.id}`}>
+								Ver mas
+							</Link>
+						</div>
+					))}
 				</div>
 			</div>
 		</div>

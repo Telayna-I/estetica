@@ -1,6 +1,6 @@
 "use client";
 
-import { registerUser } from "@/app/actions";
+import { registerUser } from "@/actions";
 // import { login, registerUser } from "@/actions";
 import clsx from "clsx";
 import { useState } from "react";

@@ -1,4 +1,4 @@
-import { getPaginateShifts } from "@/app/actions";
+import { getPaginateShifts } from "@/actions";
 import { Title } from "@/app/components";
 import { DropdownMenu } from "./ui/DropdownMenu";
 import Link from "next/link";

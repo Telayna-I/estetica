@@ -1,5 +1,5 @@
 "use client";
-import { deleteTreatment, finishTreatment } from "@/app/actions";
+import { deleteTreatment, finishTreatment } from "@/actions";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -16,7 +16,7 @@ export const DropdownMenu = ({ treatmentId }: Props) => {
 	const [isCollapsed, setIsCollapsed] = useState(false);
 
 	return (
-		<div className='bg-gray-100 flex items-center justify-center'>
+		<div className='bg-gray-100 flex items-center justify-center '>
 			<div className='relative inline-block text-left'>
 				<CgMoreVerticalO
 					className='cursor-pointer transition-all hover:text-gray-700 bg-transparent'
@@ -24,7 +24,7 @@ export const DropdownMenu = ({ treatmentId }: Props) => {
 				/>
 
 				<div
-					className={`origin-top-right absolute right-0 mt-2 w-36 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 ${
+					className={`origin-top-right absolute right-0 mt-2 w-36 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 ${
 						isCollapsed ? "visible" : "hidden"
 					}`}>
 					<div className='py-2 p-2' aria-labelledby='dropdown-button'>

@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 import clsx from "clsx";
 import { LiaStethoscopeSolid } from "react-icons/lia";
-import { newPatient } from "@/app/actions";
+import { newPatient } from "@/actions";
 import { useRouter } from "next/navigation";
 
 type FormInputs = {
