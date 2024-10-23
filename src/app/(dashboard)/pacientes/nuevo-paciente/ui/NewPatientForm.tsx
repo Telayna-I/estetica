@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Gender } from "@prisma/client";
+import { Gender, Patient } from "@prisma/client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
 	FaUser,
@@ -29,20 +29,35 @@ type FormInputs = {
 	observations: string;
 };
 
-const NewPatientForm = () => {
+interface Props {
+	patient?: Patient;
+}
+
+const NewPatientForm = ({ patient: patientToEdit }: Props) => {
 	const router = useRouter();
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FormInputs>();
+	} = useForm<FormInputs>({
+		defaultValues: {
+			age: patientToEdit?.age,
+			name: patientToEdit?.name,
+			phone: patientToEdit?.phone,
+			allergies: patientToEdit?.allergies ?? "",
+			takeMedicine: patientToEdit?.takeMedicine ?? "",
+			pathologies: patientToEdit?.pathologies ?? "",
+			observations: patientToEdit?.observations ?? "",
+			gender: patientToEdit?.gender,
+		},
+	});
 
 	const onSubmit = async (data: FormInputs) => {
 		const formData = new FormData();
 
-		// if (product.id) {
-		// 	formData.append("id", product.id ?? "");
-		// }
+		if (patientToEdit?.id) {
+			formData.append("id", patientToEdit?.id ?? "");
+		}
 		formData.append("name", data.name.toLowerCase() ?? "");
 		formData.append("phone", data.phone ?? "");
 		formData.append("gender", data.gender ?? "");
@@ -268,7 +283,7 @@ const NewPatientForm = () => {
 						<button
 							type='submit'
 							className='w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out'>
-							Crear paciente
+							{patientToEdit?.id ? "Actualizar paciente" : "Crear paciente"}
 						</button>
 					</div>
 				</form>

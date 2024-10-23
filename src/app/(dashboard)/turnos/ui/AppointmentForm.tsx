@@ -397,30 +397,3 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 };
 
 export default ShiftForm;
-
-// defaultValues: {
-// 			todo: treatment?.todo,
-// 			observations: treatment?.observations ?? "",
-// 			price: treatment?.price,
-// 			date: treatment?.date,
-// 			hour: treatment?.hour?.toString(),
-// 			upfrontPayment: treatment?.upfrontPayment?.toString(),
-// 			images: undefined,
-// 		},
-
-// const { date, hour, images, minutes, observations, price, tipo, todo, upfrontPayment } = formState;
-
-// const onInputChange = (
-// 	e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-// ) => {
-// 	const { target } = e;
-// 	const { name, value } = target;
-
-// 	setFormState({ ...formState, [name]: value });
-
-// 	return null;
-// };
-
-// const [appointments, setAppointments] = useState<Treatment[]>();
-
-// const [availableMinutes, setAvailableMinutes] = useState<number[]>([0, 15, 30, 45]);

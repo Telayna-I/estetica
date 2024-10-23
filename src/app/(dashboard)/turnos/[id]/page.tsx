@@ -1,19 +1,9 @@
 import { getShiftById } from "@/actions";
 import { Title } from "@/app/components";
 import DateTimeDisplay from "@/components/ui/colck/DateTimeDisplay";
-import {
-	FaAllergies,
-	FaCalendarAlt,
-	FaClock,
-	FaDollarSign,
-	FaInfoCircle,
-	FaNotesMedical,
-	FaUserAlt,
-} from "react-icons/fa";
-import { FiArrowRight, FiCalendar, FiClock } from "react-icons/fi";
-import { GiMedicalDrip } from "react-icons/gi";
+import { FaAllergies, FaDollarSign, FaNotesMedical, FaUserAlt } from "react-icons/fa";
+import { FiCalendar, FiClock } from "react-icons/fi";
 import { TreatmentImage } from "../ui/TreatmentImage";
-import Image from "next/image";
 import { DropdownMenu } from "../ui/DropdownMenu";
 
 interface Props {
@@ -30,7 +20,7 @@ export default async function ShiftPage({ params }: Props) {
 	return (
 		<>
 			<div className='flex justify-between mt-10'>
-				<Title title='Detalles del turno' />
+				<Title title={"Detalles del turno"} />
 				<DateTimeDisplay />
 			</div>
 			<div className='max-w-3xl mx-auto bg-white shadow-lg rounded-md overflow-hidden mt-10 relative'>

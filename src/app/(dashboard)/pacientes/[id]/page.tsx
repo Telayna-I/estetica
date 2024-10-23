@@ -36,9 +36,14 @@ export default async function PatientDataDisplay({ params }: Props) {
 	return (
 		<div className='flex flex-col mx-24'>
 			<Title title='Informacion del Paciente' className='mt-5' />
-			<Link href={`/turnos/nuevo-turno/${patient?.id}`} className='w-fit self-end'>
-				<ButtonOutline label='Nuevo Turno' self='end' />
-			</Link>
+			<div className='buttons flex justify-between mt-5'>
+				<Link href={`/pacientes/editar-paciente/${patient?.id}`} className='w-fit self-end'>
+					<ButtonOutline label='Editar Paciente' self='end' />
+				</Link>
+				<Link href={`/turnos/nuevo-turno/${patient?.id}`} className='w-fit self-end'>
+					<ButtonOutline label='Nuevo Turno' self='end' />
+				</Link>
+			</div>
 			<div className='w-full m-auto mt-5 p-6 bg-indigo-500/20 rounded-lg shadow-md'>
 				<div className='space-y-4 flex flex-col'>
 					<div className='flex justify-between gap-4'>
