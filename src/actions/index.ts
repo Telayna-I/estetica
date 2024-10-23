@@ -18,3 +18,4 @@ export * from "./shifts/delete-treatment-image";
 export * from "./shifts/delete-treatment";
 export * from "./shifts/finish-treatment";
 export * from "./shifts/get-treatments-from-patient";
+export * from "./shifts/get-shifts-by-date";

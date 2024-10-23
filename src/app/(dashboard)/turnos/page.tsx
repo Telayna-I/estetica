@@ -33,7 +33,9 @@ export default async function ShiftsPage() {
 									</span>
 									<span className='flex items-center'>
 										<FiClock className='h-4 w-4' />
-										<span className='text-sm ml-1'>{shift.hour}</span>
+										<span className='text-sm ml-1'>
+											{shift.hour} : {shift.minutes}
+										</span>
 									</span>
 								</div>
 							</Link>

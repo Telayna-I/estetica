@@ -17,7 +17,7 @@ const patientSchema = z.object({
 		.transform((val) => Number(val)),
 	allergies: z.string(),
 	takeMedicine: z.string(),
-	recentTreatment: z.string(),
+	pathologies: z.string(),
 	observations: z.string(),
 });
 

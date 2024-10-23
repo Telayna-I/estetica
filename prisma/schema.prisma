@@ -35,16 +35,16 @@ model User {
 }
 
 model Patient {
-  id              String      @id @default(uuid())
-  name            String
-  phone           String
-  gender          Gender
-  age             Int
-  allergies       String?
-  takeMedicine    String?
-  recentTreatment String?
-  observations    String?
-  Treatment       Treatment[]
+  id           String      @id @default(uuid())
+  name         String
+  phone        String
+  gender       Gender
+  age          Int
+  allergies    String?
+  pathologies  String?
+  takeMedicine String?
+  observations String?
+  Treatment    Treatment[]
 }
 
 model Treatment {
@@ -55,7 +55,8 @@ model Treatment {
   price          Float
   upfrontPayment Float?
   date           String
-  hour           String
+  hour           Int
+  minutes        Int
   finished       Boolean  @default(false)
   dateOfTheShift DateTime @default(now())
 

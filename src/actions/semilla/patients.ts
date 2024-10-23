@@ -10,8 +10,8 @@ const seedPatients = [
 		gender: "woman" as Gender,
 		age: 41,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -20,8 +20,8 @@ const seedPatients = [
 		gender: "woman" as Gender,
 		age: 65,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -30,8 +30,8 @@ const seedPatients = [
 		gender: "woman" as Gender,
 		age: 28,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -40,8 +40,8 @@ const seedPatients = [
 		gender: "man" as Gender,
 		age: 24,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -50,8 +50,8 @@ const seedPatients = [
 		gender: "man" as Gender,
 		age: 33,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -60,8 +60,8 @@ const seedPatients = [
 		gender: "man" as Gender,
 		age: 73,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -70,8 +70,8 @@ const seedPatients = [
 		gender: "man" as Gender,
 		age: 19,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -80,8 +80,8 @@ const seedPatients = [
 		gender: "man" as Gender,
 		age: 70,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -90,8 +90,8 @@ const seedPatients = [
 		gender: "woman" as Gender,
 		age: 32,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -100,8 +100,8 @@ const seedPatients = [
 		gender: "man" as Gender,
 		age: 82,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -110,8 +110,8 @@ const seedPatients = [
 		gender: "man" as Gender,
 		age: 53,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -120,8 +120,8 @@ const seedPatients = [
 		gender: "woman" as Gender,
 		age: 29,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -130,8 +130,8 @@ const seedPatients = [
 		gender: "woman" as Gender,
 		age: 60,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -140,8 +140,8 @@ const seedPatients = [
 		gender: "woman" as Gender,
 		age: 32,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -150,8 +150,8 @@ const seedPatients = [
 		gender: "woman" as Gender,
 		age: 71,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -160,8 +160,8 @@ const seedPatients = [
 		gender: "man" as Gender,
 		age: 72,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -170,8 +170,8 @@ const seedPatients = [
 		gender: "woman" as Gender,
 		age: 21,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -180,8 +180,8 @@ const seedPatients = [
 		gender: "man" as Gender,
 		age: 55,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -190,8 +190,8 @@ const seedPatients = [
 		gender: "man" as Gender,
 		age: 61,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 	{
@@ -200,8 +200,8 @@ const seedPatients = [
 		gender: "man" as Gender,
 		age: 40,
 		allergies: null,
+		pathologies: "fiebre reumatica",
 		takeMedicine: null,
-		recentTreatment: null,
 		observations: null,
 	},
 ];
@@ -247,27 +247,27 @@ export const createUsers = async () => {
 	}
 };
 
-export const newTreatment = async (patientId: string, userId: string) => {
-	try {
-		const newTreatment = await prisma.treatment.create({
-			data: {
-				todo: "Botox",
-				price: 500,
-				date: new Date().toString(),
-				hour: "17:00",
-				userId,
-				patientId,
-			},
-		});
-		console.log(newTreatment);
-		return {
-			ok: true,
-			newTreatment,
-		};
-	} catch (error) {
-		console.log(error);
-	}
-};
+// export const newTreatment = async (patientId: string, userId: string) => {
+// 	try {
+// 		const newTreatment = await prisma.treatment.create({
+// 			data: {
+// 				todo: "Botox",
+// 				price: 500,
+// 				date: new Date().toString(),
+
+// 				userId,
+// 				patientId,
+// 			},
+// 		});
+// 		console.log(newTreatment);
+// 		return {
+// 			ok: true,
+// 			newTreatment,
+// 		};
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+// };
 
 export const getTreatmentsFromPatient = async (patientId: string) => {
 	try {

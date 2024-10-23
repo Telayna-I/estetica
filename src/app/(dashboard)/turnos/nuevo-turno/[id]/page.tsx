@@ -1,6 +1,9 @@
-import { Treatment } from "@prisma/client";
-import NewShiftForm from "../../ui/NewShiftForm";
-import { getShiftById } from "@/actions";
+// "use client";
+import ShiftForm from "../../ui/ShiftForm";
+import { titleFont } from "@/config/fonts";
+import Link from "next/link";
+import { useState } from "react";
+import AppointmentForm from "../../ui/AppointmentForm";
 
 interface Props {
 	params: {
@@ -11,12 +14,10 @@ interface Props {
 export default async function NewShiftPage({ params }: Props) {
 	const { id } = params;
 
-	const { shift } = await getShiftById(id);
-
 	return (
 		<>
 			<div className='w-full'>
-				<NewShiftForm treatment={shift ?? {}} patientOrTreatmentId={id} />
+				<AppointmentForm patientOrTreatmentId={id} />
 			</div>
 		</>
 	);

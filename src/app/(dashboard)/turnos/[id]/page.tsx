@@ -83,12 +83,14 @@ export default async function ShiftPage({ params }: Props) {
 						<div className='flex items-center relative'>
 							<FiClock className='text--500 mr-2' />
 							<span className='font-semibold'>Hora:</span>
-							<span className='ml-2'>{shift?.hour}</span>
+							<span className='ml-2'>
+								{shift?.hour} : {shift?.minutes}
+							</span>
 						</div>
 					</div>
 				</div>
 				<div className='px-6 py-4 bg-gray-50'>
-					<h3 className='text-lg font-semibold text-gray-800 mb-2'>Antes y Despues</h3>
+					<h3 className='text-lg font-semibold text-gray-800 mb-2'>Fotos</h3>
 					<div className='flex space-x-4'>
 						<div className='w-1/2'>
 							<TreatmentImage
@@ -101,7 +103,6 @@ export default async function ShiftPage({ params }: Props) {
 								height={300}
 								className='w-full rounded'
 							/>
-							<p className='text-center mt-2 text-sm text-gray-600'>Before</p>
 						</div>
 						<div className='w-1/2'>
 							<TreatmentImage
@@ -114,7 +115,6 @@ export default async function ShiftPage({ params }: Props) {
 								width={300}
 								height={300}
 							/>
-							<p className='text-center mt-2 text-sm text-gray-600'>After</p>
 						</div>
 					</div>
 				</div>

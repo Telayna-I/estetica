@@ -12,7 +12,8 @@ cloudinary.config(process.env.CLOUDINARY_URL ?? "");
 const shiftSchema = z.object({
 	id: z.string().uuid().optional().nullable(),
 	todo: z.string().min(3).max(255),
-	hour: z.string().min(3).max(255),
+	hour: z.string().min(2).max(255),
+	minutes: z.string().min(2).max(255),
 	observations: z.string(),
 	date: z.string(),
 	tipo: z.string(),
@@ -53,6 +54,8 @@ export const createNewShift = async (formData: FormData, patientOrTreatmentId: s
 					where: { id },
 					data: {
 						...rest,
+						hour: Number(rest.hour),
+						minutes: Number(rest.minutes),
 						price: parsedPrice,
 						upfrontPayment: parsedUpfrontPayment,
 					},
@@ -63,7 +66,8 @@ export const createNewShift = async (formData: FormData, patientOrTreatmentId: s
 					data: {
 						todo: rest.todo,
 						tipo: rest.tipo,
-						hour: rest.hour,
+						hour: Number(rest.hour),
+						minutes: Number(rest.minutes),
 						date: rest.date,
 						observations: rest.observations,
 						price: parsedPrice,
@@ -74,7 +78,9 @@ export const createNewShift = async (formData: FormData, patientOrTreatmentId: s
 				});
 			}
 
-			if (formData.getAll("images")) {
+			const images = formData.getAll("images") as File[];
+
+			if (images[0]?.size > 0) {
 				const images = await uploadImages(formData.getAll("images") as File[]);
 
 				if (!images) {

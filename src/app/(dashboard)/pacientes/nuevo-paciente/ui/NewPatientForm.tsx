@@ -16,6 +16,7 @@ import clsx from "clsx";
 import { LiaStethoscopeSolid } from "react-icons/lia";
 import { newPatient } from "@/actions";
 import { useRouter } from "next/navigation";
+import { MdLocalHospital } from "react-icons/md";
 
 type FormInputs = {
 	name: string;
@@ -24,7 +25,7 @@ type FormInputs = {
 	age: Number;
 	allergies: string;
 	takeMedicine: string;
-	recentTreatment: string;
+	pathologies: string;
 	observations: string;
 };
 
@@ -47,8 +48,8 @@ const NewPatientForm = () => {
 		formData.append("gender", data.gender ?? "");
 		formData.append("age", data.age.toString() ?? "");
 		formData.append("allergies", data.allergies.toLowerCase() ?? "");
+		formData.append("pathologies", data.pathologies.toLowerCase() ?? "");
 		formData.append("takeMedicine", data.takeMedicine.toLowerCase() ?? "");
-		formData.append("recentTreatment", data.recentTreatment.toLowerCase() ?? "");
 		formData.append("observations", data.observations.toLowerCase() ?? "");
 
 		const { ok, patient } = await newPatient(formData);
@@ -202,6 +203,25 @@ const NewPatientForm = () => {
 									{...register("allergies", { required: true })}></textarea>
 							</div>
 						</div>
+						<div>
+							<label
+								htmlFor='pathologies'
+								className='block text-sm font-medium text-gray-700'>
+								Patologias
+							</label>
+							<div className='mt-1 relative rounded-md shadow-sm'>
+								<div className='absolute inset-y-0 left-0 pl-3 pt-2 pointer-events-none'>
+									<MdLocalHospital className='h-5 w-5 text-gray-400' />
+								</div>
+								<textarea
+									rows={4}
+									autoComplete='off'
+									className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+									placeholder='Especificar cualquier alergia'
+									maxLength={500}
+									{...register("pathologies", { required: true })}></textarea>
+							</div>
+						</div>
 
 						<div>
 							<label
@@ -223,25 +243,6 @@ const NewPatientForm = () => {
 							</div>
 						</div>
 
-						<div>
-							<label
-								htmlFor='recentTreatment'
-								className='block text-sm font-medium text-gray-700'>
-								Tratamientos recientes
-							</label>
-							<div className='mt-1 relative rounded-md shadow-sm'>
-								<div className='absolute inset-y-0 left-0 pl-3 pt-2 pointer-events-none'>
-									<FaReceipt className='h-5 w-5 text-gray-400' />
-								</div>
-								<textarea
-									rows={4}
-									autoComplete='off'
-									className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-									placeholder='Especifique algun tratamiento'
-									maxLength={1000}
-									{...register("recentTreatment", { required: true })}></textarea>
-							</div>
-						</div>
 						<div>
 							<label
 								htmlFor='observations'

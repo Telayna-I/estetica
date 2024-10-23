@@ -14,6 +14,7 @@ import {
 	FaNotesMedical,
 	FaUser,
 } from "react-icons/fa";
+import { MdLocalHospital } from "react-icons/md";
 
 interface Props {
 	params: {
@@ -72,7 +73,7 @@ export default async function PatientDataDisplay({ params }: Props) {
 						`}>
 							<div className='flex items-center space-x-1 mb-2'>
 								<span className='text-blue-500'>
-									{<FaPhone className='h-4 w-4 text-green-500' />}
+									{<FaPhone className='h-3 w-3 text-green-500' />}
 								</span>
 								<label className='font-medium  text-gray-700'>
 									Numero telefonico
@@ -112,13 +113,11 @@ export default async function PatientDataDisplay({ params }: Props) {
 						`}>
 							<div className='flex items-center space-x-1 mb-2'>
 								<span className='text-blue-500'>
-									<FaNotesMedical className='h-4 w-4 text-indigo-500' />
+									<MdLocalHospital className='h-5 w-5 text-indigo-500' />
 								</span>
-								<label className='font-medium text-gray-700'>
-									Tratamientos actuales
-								</label>
+								<label className='font-medium text-gray-700'>Patologias</label>
 							</div>
-							<p className='text-gray-800 text-sm'>{patient?.recentTreatment}</p>
+							<p className='text-gray-800 text-sm'>{patient?.pathologies}</p>
 						</div>
 
 						<div

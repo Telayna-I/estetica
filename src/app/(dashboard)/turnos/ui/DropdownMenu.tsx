@@ -29,7 +29,7 @@ export const DropdownMenu = ({ treatmentId }: Props) => {
 					}`}>
 					<div className='py-2 p-2' aria-labelledby='dropdown-button'>
 						<Link
-							href={`/turnos/nuevo-turno/${treatmentId}`}
+							href={`/turnos/editar-turno/${treatmentId}`}
 							className='flex w-full items-center rounded-md px-4 py-2 mb-1 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer'>
 							<FiEdit className='h-4 w-4 mr-2' />
 							<span className='text-sm'>Editar</span>
