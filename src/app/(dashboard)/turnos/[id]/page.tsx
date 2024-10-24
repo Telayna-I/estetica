@@ -19,70 +19,75 @@ export default async function ShiftPage({ params }: Props) {
 
 	return (
 		<>
-			<div className='flex justify-between mt-10'>
-				<Title title={"Detalles del turno"} />
+			<div className='flex flex-col md:flex-row justify-between mt-10'>
+				<Title title={"Detalles del turno"} className='mb-5' />
 				<DateTimeDisplay />
 			</div>
-			<div className='max-w-3xl mx-auto bg-white shadow-lg rounded-md overflow-hidden mt-10 relative'>
+
+			<div className='max-w-full md:max-w-3xl mx-auto bg-white shadow-lg rounded-md overflow-hidden mt-10 relative'>
 				<div className='px-6 py-4 absolute right-0 top-0 z-10'>
 					<DropdownMenu treatmentId={id} />
 				</div>
+
 				<div className='px-6 py-4 relative'>
-					<div className='space-y-4'>
-						<div className='flex items-center relative capitalize'>
-							<FaUserAlt className='text-blue-500 mr-2' />
-							<span className='font-semibold'>Nombre completo:</span>
-							<span className='ml-2'>{shift?.patient.name}</span>
-						</div>
-						<div className='flex items-center relative'>
-							<FaAllergies className='text-yellow-500 mr-2' />
-							<span className='font-semibold'>Alergias:</span>
-							<span className='ml-2'>{shift?.patient.allergies}</span>
-						</div>
-						<div className='flex items-center relative'>
-							<FaNotesMedical className='text-indigo-500 mr-2' />
-							<span className='font-semibold'>Tratamiento:</span>
-							<span className='ml-2'>{shift?.todo}</span>
-						</div>
-						<div className='flex items-center relative'>
-							<FiCalendar className='text-red-500 mr-2' />
-							<span className='font-semibold'>Fecha:</span>
-							<span className='ml-2'>{shift?.date}</span>
-						</div>
-						<div className='flex items-center relative'>
-							<FaDollarSign className='text-green-600 mr-2' />
-							<span className='font-semibold'>Precio:</span>
-							<span className='ml-2'>{shift?.price}</span>
-						</div>
-						<div className='flex  relative'>
-							<div className='flex items-center'>
-								<FaDollarSign className='text-green-600 mr-2' />
-								<span className='font-semibold'>Seña:</span>
-								<span className='ml-2'>{shift?.upfrontPayment}</span>
+					<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+						{[
+							{
+								icon: <FaUserAlt className='text-blue-500 mr-2' />,
+								label: "Nombre completo:",
+								value: shift?.patient.name,
+							},
+							{
+								icon: <FaAllergies className='text-yellow-500 mr-2' />,
+								label: "Alergias:",
+								value: shift?.patient.allergies,
+							},
+							{
+								icon: <FaNotesMedical className='text-indigo-500 mr-2' />,
+								label: "Tratamiento:",
+								value: shift?.todo,
+							},
+							{
+								icon: <FiCalendar className='text-red-500 mr-2' />,
+								label: "Fecha:",
+								value: shift?.date,
+							},
+							{
+								icon: <FaDollarSign className='text-green-600 mr-2' />,
+								label: "Precio:",
+								value: shift?.price,
+							},
+							{
+								icon: <FaDollarSign className='text-green-600 mr-2' />,
+								label: "Seña:",
+								value: shift?.upfrontPayment,
+							},
+							{
+								icon: <FaDollarSign className='text-green-600 mr-2' />,
+								label: "Restan:",
+								value: shift?.price! - shift?.upfrontPayment!,
+							},
+							{
+								icon: <FiClock className='text-gray-500 mr-2' />,
+								label: "Hora:",
+								value: `${shift?.hour} : ${shift?.minutes}`,
+							},
+						].map(({ icon, label, value }, index) => (
+							<div className='flex items-start' key={index}>
+								{icon}
+								<div className='ml-2 flex-1'>
+									<span className='font-semibold'>{label}</span>
+									<span className='block'>{value}</span>
+								</div>
 							</div>
-						</div>
-						<div className='flex  relative'>
-							<div className='flex items-center'>
-								<FaDollarSign className='text-green-600 mr-2' />
-								<span className='font-semibold'>Restan:</span>
-								<span className='ml-2'>
-									{shift?.price! - shift?.upfrontPayment!}
-								</span>
-							</div>
-						</div>
-						<div className='flex items-center relative'>
-							<FiClock className='text--500 mr-2' />
-							<span className='font-semibold'>Hora:</span>
-							<span className='ml-2'>
-								{shift?.hour} : {shift?.minutes}
-							</span>
-						</div>
+						))}
 					</div>
 				</div>
+
 				<div className='px-6 py-4 bg-gray-50'>
 					<h3 className='text-lg font-semibold text-gray-800 mb-2'>Fotos</h3>
-					<div className='flex space-x-4'>
-						<div className='w-1/2'>
+					<div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+						<div className='w-full'>
 							<TreatmentImage
 								src={
 									shift?.TreatmentImage[0]?.url ??
@@ -94,16 +99,16 @@ export default async function ShiftPage({ params }: Props) {
 								className='w-full rounded'
 							/>
 						</div>
-						<div className='w-1/2'>
+						<div className='w-full'>
 							<TreatmentImage
 								src={
 									shift?.TreatmentImage[1]?.url ??
 									"https://res.cloudinary.com/telayna-i/image/upload/v1728345656/placeholder_g94ztn.jpg"
 								}
 								alt={shift?.todo!}
-								className='w-full rounded'
 								width={300}
 								height={300}
+								className='w-full rounded'
 							/>
 						</div>
 					</div>

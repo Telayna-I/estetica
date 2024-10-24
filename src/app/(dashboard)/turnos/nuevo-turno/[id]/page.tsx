@@ -1,8 +1,3 @@
-// "use client";
-import ShiftForm from "../../ui/ShiftForm";
-import { titleFont } from "@/config/fonts";
-import Link from "next/link";
-import { useState } from "react";
 import AppointmentForm from "../../ui/AppointmentForm";
 
 interface Props {
@@ -16,7 +11,7 @@ export default async function NewShiftPage({ params }: Props) {
 
 	return (
 		<>
-			<div className='w-full'>
+			<div className='w-full px-4 sm:px-6 lg:px-8'>
 				<AppointmentForm patientOrTreatmentId={id} />
 			</div>
 		</>

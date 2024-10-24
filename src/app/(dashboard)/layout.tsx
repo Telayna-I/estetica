@@ -14,7 +14,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
 			<div className='flex'>
 				<SideNavigation />
 
-				<div className='w-full text-primary_text bg-principal px-10 '>{children}</div>
+				<div className='w-full text-primary_text bg-principal px-5 '>{children}</div>
 			</div>
 		</div>
 	);

@@ -13,7 +13,7 @@ const shiftSchema = z.object({
 	id: z.string().uuid().optional().nullable(),
 	todo: z.string().min(3).max(255),
 	hour: z.string().min(2).max(255),
-	minutes: z.string().min(2).max(255),
+	minutes: z.string().min(1).max(255),
 	observations: z.string(),
 	date: z.string(),
 	tipo: z.string(),

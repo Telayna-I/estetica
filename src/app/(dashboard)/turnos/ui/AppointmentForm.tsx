@@ -3,7 +3,6 @@
 export const revalidate = 10;
 
 import { FaDollarSign, FaNotesMedical } from "react-icons/fa";
-import clsx from "clsx";
 import { LiaStethoscopeSolid } from "react-icons/lia";
 
 import { FiCalendar, FiClock } from "react-icons/fi";
@@ -75,6 +74,8 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 		}
 		const { images, ...treatmentToSave } = data;
 
+		console.log(formData.getAll("minutes"));
+
 		console.log(images);
 
 		if (treatment?.id) {
@@ -122,14 +123,14 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 	}, [selectedHour, type]);
 
 	return (
-		<div className=' flex items-center justify-center px-4 sm:px-6 lg:px-8 relative'>
+		<div className='flex items-center justify-center px-4 sm:px-6 lg:px-8 relative'>
 			<div className='max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-sm'>
 				<h2 className='text-center text-2xl font-semibold text-gray-800'>
 					Datos para el turno.
 				</h2>
 				<form className='mt-8 space-y-6' action={handleSubmit}>
 					<div className='space-y-4'>
-						<div className=''>
+						<div>
 							<label
 								htmlFor='tipo'
 								className='block text-sm font-medium text-gray-700'>
@@ -140,14 +141,12 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 									<FaNotesMedical className='h-5 w-5 text-gray-400' />
 								</div>
 								<select
-									className={clsx(
-										"block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-									)}
+									className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
 									autoComplete='off'
 									name='tipo'
 									onChange={(e) => setType(e.target.value)}
 									defaultValue={treatment?.tipo}
-									required={true}>
+									required>
 									<option value=''>Seleccione</option>
 									<option value='Facial'>Facial</option>
 									<option value='Capilar'>Capilar</option>
@@ -157,10 +156,9 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 							</div>
 						</div>
 					</div>
-					{/* // TODO TRATAR DE QUE SE LLENEN LOS CAMPOS POR DEFAULT */}
 					{type && (
 						<div className='space-y-4'>
-							<div className=''>
+							<div>
 								<label
 									htmlFor='todo'
 									className='block text-sm font-medium text-gray-700'>
@@ -171,11 +169,9 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 										<FaNotesMedical className='h-5 w-5 text-gray-400' />
 									</div>
 									<select
-										className={clsx(
-											"block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-										)}
+										className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
 										autoComplete='off'
-										required={true}
+										required
 										name='todo'
 										defaultValue={treatment?.todo}>
 										<option value=''>Seleccione</option>
@@ -216,8 +212,8 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 							</div>
 						</div>
 					)}
-					<div className='flex space-x-4'>
-						<div className='flex-1'>
+					<div className='space-y-4'>
+						<div>
 							<label
 								htmlFor='date'
 								className='block text-sm font-medium text-gray-700'>
@@ -229,19 +225,15 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 								</div>
 								<input
 									type='date'
-									required={true}
+									required
 									name='date'
 									onChange={(e) => handleChangeDate(e.target.value)}
 									defaultValue={treatment?.date}
-									className={clsx(
-										"block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-									)}
+									className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
 								/>
 							</div>
 						</div>
-					</div>
-					{date && (
-						<div className='flex space-x-4'>
+						<div className='flex flex-col sm:flex-row sm:space-x-4'>
 							<div className='flex-1'>
 								<label
 									htmlFor='hour'
@@ -253,12 +245,10 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 										<FiClock className='h-5 w-5 text-gray-400' />
 									</div>
 									<select
-										className={clsx(
-											"block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-										)}
+										className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
 										name='hour'
 										defaultValue={treatment?.hour}
-										required={true}
+										required
 										onChange={(e) => setSelectedHour(e.target.value)}
 										autoComplete='off'>
 										{availableTimes.map((horario) => (
@@ -269,41 +259,36 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 									</select>
 								</div>
 							</div>
-
-							<div className='flex space-x-4'>
-								<div className='flex-1'>
-									<label
-										htmlFor='minutes'
-										className='block text-sm font-medium text-gray-700'>
-										Minutos
-									</label>
-									<div className='mt-1 relative rounded-md shadow-sm'>
-										<div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-											<FiClock className='h-5 w-5 text-gray-400' />
-										</div>
-										<select
-											className={clsx(
-												"block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-											)}
-											name='minutes'
-											required={true}
-											defaultValue={treatment?.minutes}
-											autoComplete='off'>
-											{availableMinutes.length > 0 ? (
-												availableMinutes.map((minuto, index) => (
-													<option key={index} value={minuto}>
-														{minuto < 10 ? `0${minuto}` : minuto}
-													</option>
-												))
-											) : (
-												<option>No hay minutos disponibles</option>
-											)}
-										</select>
+							<div className='flex-1'>
+								<label
+									htmlFor='minutes'
+									className='block text-sm font-medium text-gray-700'>
+									Minutos
+								</label>
+								<div className='mt-1 relative rounded-md shadow-sm'>
+									<div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+										<FiClock className='h-5 w-5 text-gray-400' />
 									</div>
+									<select
+										className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+										name='minutes'
+										required
+										defaultValue={treatment?.minutes}
+										autoComplete='off'>
+										{availableMinutes.length > 0 ? (
+											availableMinutes.map((minuto, index) => (
+												<option key={index} value={minuto}>
+													{minuto < 10 ? `0${minuto}` : minuto}
+												</option>
+											))
+										) : (
+											<option>No hay minutos disponibles</option>
+										)}
+									</select>
 								</div>
 							</div>
 						</div>
-					)}
+					</div>
 					{treatment?.id && (
 						<div className='flex flex-col mb-2'>
 							<span>Fotos</span>
@@ -311,7 +296,7 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 								type='file'
 								name='images'
 								multiple
-								className='p-2 border rounded-md '
+								className='p-2 border rounded-md w-full'
 								accept='image/png, image/jpeg, image/avif'
 							/>
 						</div>
@@ -335,31 +320,27 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 							</div>
 						))}
 					</div>
-					<div className=''>
-						<div className='flex-1'>
-							<label
-								htmlFor='upfrontPayment'
-								className='block text-sm font-medium text-gray-700'>
-								Seña
-							</label>
-							<div className='mt-1 relative rounded-md shadow-sm'>
-								<div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-									<FaDollarSign className='h-4 w-4 text-gray-400' />
-								</div>
-								<input
-									inputMode='numeric'
-									pattern='[0-9]*'
-									type='text'
-									autoComplete='off'
-									className={clsx(
-										"block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-									)}
-									placeholder='500'
-									name='upfrontPayment'
-									defaultValue={treatment?.upfrontPayment?.toString()}
-									required={true}
-								/>
+					<div>
+						<label
+							htmlFor='upfrontPayment'
+							className='block text-sm font-medium text-gray-700'>
+							Seña
+						</label>
+						<div className='mt-1 relative rounded-md shadow-sm'>
+							<div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+								<FaDollarSign className='h-4 w-4 text-gray-400' />
 							</div>
+							<input
+								inputMode='numeric'
+								pattern='[0-9]*'
+								type='text'
+								autoComplete='off'
+								className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+								placeholder='500'
+								name='upfrontPayment'
+								defaultValue={treatment?.upfrontPayment?.toString()}
+								required
+							/>
 						</div>
 					</div>
 					<div>
@@ -380,7 +361,7 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 								maxLength={1000}
 								name='observations'
 								defaultValue={treatment?.observations || ""}
-								required={true}></textarea>
+								required></textarea>
 						</div>
 					</div>
 					<div>

@@ -13,7 +13,7 @@ export default async function EditPatientPage({ params }: Props) {
 	const { patient } = await getPatientById(id);
 
 	return (
-		<div className='w-full'>
+		<div className='w-full flex justify-center'>
 			<NewPatientForm patient={patient} />
 		</div>
 	);

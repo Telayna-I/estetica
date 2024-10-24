@@ -37,7 +37,7 @@ export const DropdownMenu = ({ treatmentId }: Props) => {
 						<button
 							onClick={() => {
 								finishTreatment(treatmentId);
-								router.replace("/turnos");
+								// router.replace("/turnos");
 							}}
 							className='flex items-center w-full  rounded-md px-4 py-2 mb-1  font-semibold text-green-400 hover:bg-green-400 hover:text-white hover:border-green-500 cursor-pointer'
 							role='menuitem'>
@@ -47,7 +47,7 @@ export const DropdownMenu = ({ treatmentId }: Props) => {
 						<button
 							onClick={() => {
 								deleteTreatment(treatmentId);
-								router.replace("/turnos");
+								// router.replace("/turnos");
 							}}
 							className='flex items-center w-full  rounded-md px-4 py-2  font-semibold text-rosa_vibrante hover:bg-rosa_vibrante hover:text-white hover:border-rosa_vibrante cursor-pointer'
 							role='menuitem'>

@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { FiUsers, FiSettings, FiUserPlus } from "react-icons/fi";
+import { FiUsers, FiUserPlus } from "react-icons/fi";
 import { FaChartBar, FaRegClipboard } from "react-icons/fa";
 import { TbLogout } from "react-icons/tb";
 import Link from "next/link";
@@ -27,22 +27,19 @@ const SideNavigation = () => {
 		{ name: "Turnos", icon: <FaRegClipboard />, path: "/turnos" },
 		{ name: "Usuarios", icon: <FaChartBar />, path: "/usuarios" },
 		{ name: "Nuevo Usuario", icon: <FiUserPlus />, path: "/auth/new-account" },
-		// { name: "Settings", icon: <FiSettings />, path: "/" },
-		// { name: "Salir", icon: <TbLogout size={18} className='' /> },
 	];
 
-	// console.log(currentPath.);
 	return (
 		<nav
 			className={`flex flex-col border border-r-color_border/45 shadow-md min-h-screen p-4 transition-all duration-300 bg-white text-gray-800 ${
 				isCollapsed ? "w-16" : "w-64"
 			} shadow-lg`}>
 			<div className='flex items-center justify-between mb-8'>
-				{!isCollapsed && <h1 className='text-xl font-bold'>Menu</h1>}
+				{!isCollapsed && <h1 className='text-xl font-bold'>Menú</h1>}
 				<button
 					onClick={toggleCollapse}
 					className='p-2 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-					aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}>
+					aria-label={isCollapsed ? "Expandir barra lateral" : "Colapsar barra lateral"}>
 					{isCollapsed ? "≡" : "×"}
 				</button>
 			</div>

@@ -16,11 +16,11 @@ export default async function UsersPage() {
 
 	return (
 		<>
-			<div className='flex justify-between items-center mt-8 mb-5'>
+			<div className='flex flex-col sm:flex-row justify-between items-center mt-8 mb-5 px-4 sm:px-6'>
 				<Title title={"Usuarios"} />
-				<DateTimeDisplay className='mt-2' />
+				<DateTimeDisplay className='mt-2 sm:mt-0' />
 			</div>
-			<div className='flex flex-col'>
+			<div className='flex flex-col w-full'>
 				<UsersTable users={users} />
 			</div>
 		</>

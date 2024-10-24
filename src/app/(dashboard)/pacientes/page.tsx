@@ -23,94 +23,61 @@ export default async function PatientsPage({ searchParams }: Props) {
 
 	return (
 		<>
-			<div className='flex justify-between items-center mt-8 mb-5'>
-				<Title title={"Listado de pacientes."} />
+			<div className='flex flex-col md:flex-row justify-between items-start mt-8 mb-5'>
+				<div className='mb-4 md:mb-0'>
+					<Title title={"Listado de pacientes."} />
+				</div>
 				<DateTimeDisplay className='mt-2' />
 			</div>
 			<div className='flex flex-col'>
-				<Link href={"/pacientes/nuevo-paciente"} className='self-end'>
+				<Link href={"/pacientes/nuevo-paciente"} className='self-start mb-4'>
 					<ButtonOutline label='Nuevo paciente' />
 				</Link>
 				<SearchBar />
-				<table className=' m-auto mt-3 w-full'>
-					<thead className='bg-gray-200 border-b'>
-						<tr>
-							<th
-								scope='col'
-								className='text-sm font-medium text-gray-900 px-6 py-4 text-left '>
-								Nombre
-							</th>
-							<th
-								scope='col'
-								className='text-sm font-medium text-gray-900 px-6 py-4 text-left'>
-								Telefono
-							</th>
-							<th
-								scope='col'
-								className='text-sm font-medium text-gray-900 px-6 py-4 text-left'>
-								Acciones
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						{/* <tr
-							key={"user.id"}
-							className='bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100'>
-							<td className='px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900'>
-								{"Leandro Magnaterra"}
-							</td>
-							<td className='text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap'>
-								{"2932 534436"}
-							</td>
-							<td className='flex underline cursor-pointer items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap'> */}
-						{/* {"Ver ficha"} */}
-						{/* <select
-						className='text-sm text-gray-900 w-full p-2 rounded outline-none'
-						value={'user.role'}
-						onChange={(e) => changeUserRole(user.id, e.target.value)}>
-						<option className='rounded' value='admin'>
-							Admin
-						</option>
-						<option className='rounded' value='user'>
-							User
-						</option>
-					</select> */}
-						{/* </td> */}
-						{/* </tr> */}
-						{patients.map((patient) => (
-							<tr
-								key={patient.id}
-								className='bg-white border-b transition duration-300 ease-in-out hover:bg-indigo-100'>
-								<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 capitalize'>
-									{patient.name}
-								</td>
-								<td className='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>
-									{patient.phone}
-								</td>
-								<td className='flex underline cursor-pointer items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap'>
-									<Link
-										className='font-medium text-blue-600 underline'
-										href={`/pacientes/${patient.id}`}>
-										Ver ficha
-									</Link>
-								</td>
-								{/* <td className='flex items-center text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap'>
-									<select
-										className='text-sm text-gray-900 w-full p-2 rounded outline-none'
-										value={user.role}
-										onChange={(e) => changeUserRole(user.id, e.target.value)}>
-										<option className='rounded' value='admin'>
-											Admin
-										</option>
-										<option className='rounded' value='user'>
-											User
-										</option>
-									</select>
-								</td> */}
+				<div className='overflow-x-auto mt-3'>
+					<table className='m-auto w-full bg-white shadow-md rounded-lg'>
+						<thead className='bg-gray-200 border-b'>
+							<tr>
+								<th
+									scope='col'
+									className='text-sm font-medium text-gray-900 px-6 py-4 text-left'>
+									Nombre
+								</th>
+								<th
+									scope='col'
+									className='text-sm font-medium text-gray-900 px-6 py-4 text-left'>
+									Teléfono
+								</th>
+								<th
+									scope='col'
+									className='text-sm font-medium text-gray-900 px-6 py-4 text-left'>
+									Acciones
+								</th>
 							</tr>
-						))}
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{patients.map((patient) => (
+								<tr
+									key={patient.id}
+									className='bg-white border-b transition duration-300 ease-in-out hover:bg-indigo-100'>
+									<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 capitalize'>
+										{patient.name}
+									</td>
+									<td className='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>
+										{patient.phone}
+									</td>
+									<td className='flex items-center text-sm font-light px-6 py-4 whitespace-nowrap'>
+										<Link
+											className='font-medium text-blue-600 hover:underline'
+											href={`/pacientes/${patient.id}`}>
+											Ver ficha
+										</Link>
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
 			</div>
 			<Pagination totalPages={totalPages!} />
 		</>

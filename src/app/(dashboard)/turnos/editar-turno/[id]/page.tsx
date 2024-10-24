@@ -14,7 +14,7 @@ export default async function AppointmentEditPage({ params }: Props) {
 	const { shift: appointment } = await getShiftById(id);
 
 	return (
-		<div>
+		<div className='px-4 sm:px-6 lg:px-8'>
 			<Title title={"Editar turno"} />
 			<AppointmentForm treatment={appointment} patientOrTreatmentId={appointment?.id!} />
 		</div>

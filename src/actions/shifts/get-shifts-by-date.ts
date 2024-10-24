@@ -4,7 +4,7 @@ import prisma from "@/app/lib/prisma";
 
 export const getShiftsByDate = async (date: string) => {
 	try {
-		const shifts = await prisma.treatment.findMany({ where: { date } });
+		const shifts = await prisma.treatment.findMany({ where: { finished: false, date } });
 
 		if (!shifts) {
 			console.log(shifts);
