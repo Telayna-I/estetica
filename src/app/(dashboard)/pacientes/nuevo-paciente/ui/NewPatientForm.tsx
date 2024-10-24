@@ -16,6 +16,7 @@ import { LiaStethoscopeSolid } from "react-icons/lia";
 import { newPatient } from "@/actions";
 import { useRouter } from "next/navigation";
 import { MdLocalHospital } from "react-icons/md";
+import { toast } from "sonner";
 
 type FormInputs = {
 	name: string;
@@ -68,10 +69,27 @@ const NewPatientForm = ({ patient: patientToEdit }: Props) => {
 
 		const { ok, patient } = await newPatient(formData);
 
-		// TODO: TOAST
 		if (!ok) {
-			alert("No se pudo crear / actualizar el paciente.");
+			if (patientToEdit?.id) {
+				toast.error("No se pudo crear el paciente.", {
+					position: "bottom-center",
+				});
+			} else {
+				toast.error("No se pudo actualizar el paciente.", {
+					position: "bottom-center",
+				});
+			}
 			return;
+		} else {
+			if (patientToEdit?.id) {
+				toast.success("Paciente actualizado correctamente.", {
+					position: "bottom-center",
+				});
+			} else {
+				toast.success("Paciente creado correctamente.", {
+					position: "bottom-center",
+				});
+			}
 		}
 
 		router.replace(`/pacientes/${patient?.id}`);

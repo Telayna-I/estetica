@@ -93,7 +93,7 @@ export default async function PatientDataDisplay({ params }: Props) {
 						</div>
 						<p className='text-gray-800 text-sm'>{patient?.pathologies}</p>
 					</div>
-					<div className='bg-gray-50 p-4 rounded-md transition-all duration-300 hover:bg-gray-100 focus-within:ring-2 focus-within:ring-blue-300'>
+					<div className='bg-gray-50 p-4 rounded-md transition-all duration-300 hover:bg-gray-100 focus-within:ring-2 focus-within:ring-blue-300 col-span-full'>
 						<div className='flex items-center space-x-1 mb-2'>
 							<FaPills className='h-4 w-4 text-pink-500' />
 							<label className='font-medium text-gray-700'>Medicamentos en uso</label>

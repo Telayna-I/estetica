@@ -1,27 +1,21 @@
 "use client";
 
 export const revalidate = 10;
-
 import { FaDollarSign, FaNotesMedical } from "react-icons/fa";
 import { LiaStethoscopeSolid } from "react-icons/lia";
-
 import { FiCalendar, FiClock } from "react-icons/fi";
-import Link from "next/link";
 import { Treatment, TreatmentImage as TreatmentWithImage } from "@prisma/client";
 import { TreatmentImage } from "./TreatmentImage";
-import { LuArrowLeftCircle } from "react-icons/lu";
 import { aparatologia, availableTimes, capilar, corporal, facial } from "@/utils";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { sleep } from "@/utils/sleep";
 import { createNewShift, deleteTreatmentImage, getShiftsByDate } from "@/actions";
+import { toast } from "sonner";
 
 interface Props {
 	treatment?: Partial<Treatment> & { TreatmentImage?: TreatmentWithImage[] };
 	patientOrTreatmentId: string;
 }
-
-// TODO REHACER TODO EL COMPONENTE SIN USAR REACT HOOK FORM
 
 type FormInputs = {
 	todo: string;
@@ -95,10 +89,28 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 		}
 
 		const { ok, shift } = await createNewShift(formData, patientOrTreatmentId);
-		// TODO: TOAST;
+
 		if (!ok) {
-			alert("No se pudo crear / actualizar el paciente.");
+			if (treatment?.id) {
+				toast.error("No se pudo crear el turno.", {
+					position: "bottom-center",
+				});
+			} else {
+				toast.error("No se pudo actualizar el turno.", {
+					position: "bottom-center",
+				});
+			}
 			return;
+		} else {
+			if (treatment?.id) {
+				toast.success("Turno actualizado correctamente.", {
+					position: "bottom-center",
+				});
+			} else {
+				toast.success("Turno creado correctamente.", {
+					position: "bottom-center",
+				});
+			}
 		}
 		router.replace(`/turnos/${shift?.id}`);
 	};

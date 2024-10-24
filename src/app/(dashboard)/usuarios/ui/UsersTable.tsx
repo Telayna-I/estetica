@@ -3,12 +3,38 @@
 import { changeUserRole, changeUserStatus } from "@/actions";
 import { User } from "@prisma/client";
 import { FaCircle } from "react-icons/fa";
+import { toast } from "sonner";
 
 interface Props {
 	users: User[];
 }
 
 export const UsersTable = ({ users }: Props) => {
+	const handleChangeUserStatus = async (userId: string, status: string) => {
+		const { ok } = await changeUserStatus(userId, status);
+		if (ok) {
+			toast.success("Status actualizado correctamente.", {
+				position: "bottom-center",
+			});
+		} else {
+			toast.error("No se pudo actualizar el status.", {
+				position: "bottom-center",
+			});
+		}
+	};
+
+	const handleChangeUserRole = async (userId: string, status: string) => {
+		const { ok } = await changeUserRole(userId, status);
+		if (ok) {
+			toast.success("Rol actualizado correctamente.", {
+				position: "bottom-center",
+			});
+		} else {
+			toast.error("No se pudo actualizar el rol.", {
+				position: "bottom-center",
+			});
+		}
+	};
 	return (
 		<div className='overflow-x-auto'>
 			<table className='min-w-full mt-3'>
@@ -43,7 +69,7 @@ export const UsersTable = ({ users }: Props) => {
 								<select
 									className='text-sm text-gray-900 w-full p-2 rounded outline-none'
 									value={user.role}
-									onChange={(e) => changeUserRole(user.id, e.target.value)}>
+									onChange={(e) => handleChangeUserRole(user.id, e.target.value)}>
 									<option className='rounded' value='admin'>
 										Admin
 									</option>
@@ -64,7 +90,9 @@ export const UsersTable = ({ users }: Props) => {
 								<select
 									className='text-sm text-gray-900 w-full p-2 rounded outline-none'
 									value={user.status.toString()}
-									onChange={(e) => changeUserStatus(user.id, e.target.value)}>
+									onChange={(e) =>
+										handleChangeUserStatus(user.id, e.target.value)
+									}>
 									<option className='rounded' value='true'>
 										Activo
 									</option>

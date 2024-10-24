@@ -39,6 +39,8 @@ export const authConfig: NextAuthConfig = {
 
 				if (!user) return null;
 
+				if (!user.status) return null;
+
 				if (!bcryptjs.compareSync(password, user.password)) return null;
 
 				// Regresar usuario sin el password
