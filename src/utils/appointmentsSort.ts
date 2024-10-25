@@ -1,14 +1,10 @@
-import { Prisma, Treatment } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 
 type TreatmentWithRelations = Prisma.TreatmentGetPayload<{
 	include: {
 		patient: true;
 	};
 }>;
-
-interface Props {
-	appointments: TreatmentWithRelations[];
-}
 
 export const monthlyFilterAndSortAppointments = (
 	appointments: TreatmentWithRelations[]

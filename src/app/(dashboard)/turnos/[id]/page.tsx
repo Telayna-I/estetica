@@ -15,7 +15,7 @@ interface Props {
 export default async function ShiftPage({ params }: Props) {
 	const { id } = params;
 
-	const { ok, shift } = await getShiftById(id);
+	const { shift } = await getShiftById(id);
 
 	return (
 		<>
@@ -65,7 +65,7 @@ export default async function ShiftPage({ params }: Props) {
 							{
 								icon: <FaDollarSign className='text-green-600 mr-2' />,
 								label: "Restan:",
-								value: shift?.price! - shift?.upfrontPayment!,
+								value: (shift?.price ?? 0) - (shift?.upfrontPayment ?? 0),
 							},
 							{
 								icon: <FiClock className='text-gray-500 mr-2' />,
@@ -93,7 +93,7 @@ export default async function ShiftPage({ params }: Props) {
 									shift?.TreatmentImage[0]?.url ??
 									"https://res.cloudinary.com/telayna-i/image/upload/v1728345656/placeholder_g94ztn.jpg"
 								}
-								alt={shift?.todo!}
+								alt={shift?.todo ?? "treatment-image-1"}
 								width={300}
 								height={300}
 								className='w-full rounded'
@@ -105,7 +105,7 @@ export default async function ShiftPage({ params }: Props) {
 									shift?.TreatmentImage[1]?.url ??
 									"https://res.cloudinary.com/telayna-i/image/upload/v1728345656/placeholder_g94ztn.jpg"
 								}
-								alt={shift?.todo!}
+								alt={shift?.todo ?? "treatment-image-2"}
 								width={300}
 								height={300}
 								className='w-full rounded'

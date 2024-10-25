@@ -42,7 +42,7 @@ export const createNewShift = async (formData: FormData, patientOrTreatmentId: s
 	const { id, ...rest } = shift;
 
 	try {
-		const prismaTx = await prisma.$transaction(async (tx) => {
+		const prismaTx = await prisma.$transaction(async () => {
 			const userId = session!.user.id;
 			let shift: Treatment;
 			const parsedPrice = Number(rest.price);

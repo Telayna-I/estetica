@@ -35,7 +35,7 @@ export const newPatient = async (formData: FormData) => {
 	const { id, ...rest } = patient;
 
 	try {
-		const prismaTx = await prisma.$transaction(async (tx) => {
+		const prismaTx = await prisma.$transaction(async () => {
 			let patient: Patient;
 
 			// const parsedPrice = Number(rest.price);

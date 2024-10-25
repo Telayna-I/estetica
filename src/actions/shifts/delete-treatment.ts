@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 
 export const deleteTreatment = async (id: string) => {
 	try {
-		const deleletedTreatment = await prisma.treatment.delete({
+		const appointment = await prisma.treatment.delete({
 			where: {
 				id,
 			},

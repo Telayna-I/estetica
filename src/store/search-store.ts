@@ -9,10 +9,9 @@ interface State {
 
 export const useSearchStore = create<State>()(
 	persist(
-		(set, get) => ({
+		(set) => ({
 			searchResults: [],
 			setSearchResults: (res) => {
-				const { searchResults } = get();
 				set({ searchResults: res });
 			},
 		}),

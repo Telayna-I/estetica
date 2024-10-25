@@ -8,7 +8,7 @@ import { UsersTable } from "./ui/UsersTable";
 export default async function UsersPage() {
 	const session = await auth();
 
-	const { ok, users } = await getAllUsers();
+	const { users } = await getAllUsers();
 
 	if (session?.user.role !== "doctor") {
 		redirect("/turnos");

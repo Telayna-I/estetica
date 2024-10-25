@@ -1,17 +1,8 @@
 "use client";
-import { useState } from "react";
+
 import { Gender, Patient } from "@prisma/client";
-import { SubmitHandler, useForm } from "react-hook-form";
-import {
-	FaUser,
-	FaPhone,
-	FaCalendarAlt,
-	FaVenusMars,
-	FaAllergies,
-	FaPills,
-	FaStethoscope,
-	FaReceipt,
-} from "react-icons/fa";
+import { useForm } from "react-hook-form";
+import { FaUser, FaPhone, FaCalendarAlt, FaVenusMars, FaAllergies, FaPills } from "react-icons/fa";
 import { LiaStethoscopeSolid } from "react-icons/lia";
 import { newPatient } from "@/actions";
 import { useRouter } from "next/navigation";
@@ -22,7 +13,7 @@ type FormInputs = {
 	name: string;
 	phone: string;
 	gender: Gender;
-	age: Number;
+	age: number;
 	allergies: string;
 	takeMedicine: string;
 	pathologies: string;
@@ -35,11 +26,7 @@ interface Props {
 
 const NewPatientForm = ({ patient: patientToEdit }: Props) => {
 	const router = useRouter();
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<FormInputs>({
+	const { register, handleSubmit } = useForm<FormInputs>({
 		defaultValues: {
 			age: patientToEdit?.age,
 			name: patientToEdit?.name,

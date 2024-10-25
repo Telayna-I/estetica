@@ -5,7 +5,7 @@ import { AppointmentsTable } from "./ui/AppointmentsTable";
 import { getPaginateShifts } from "@/actions";
 
 export default async function ShiftsPage() {
-	const { ok, shifts } = await getPaginateShifts();
+	const { shifts } = await getPaginateShifts();
 
 	return (
 		<>

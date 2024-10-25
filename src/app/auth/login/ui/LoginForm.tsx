@@ -1,15 +1,10 @@
 "use client";
 
 import { authenticate } from "@/actions";
-import { Input } from "@nextui-org/react";
-
 import clsx from "clsx";
-
-import Link from "next/link";
-
 import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
-import { IoInformationOutline, IoWarning } from "react-icons/io5";
+import { IoInformationOutline } from "react-icons/io5";
 
 export const LoginForm = () => {
 	const [state, dispatch] = useFormState(authenticate, undefined);

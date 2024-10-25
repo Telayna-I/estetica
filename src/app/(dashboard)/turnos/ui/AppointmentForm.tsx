@@ -14,21 +14,8 @@ import { toast } from "sonner";
 
 interface Props {
 	treatment?: Partial<Treatment> & { TreatmentImage?: TreatmentWithImage[] };
-	patientOrTreatmentId: string;
+	patientOrTreatmentId?: string;
 }
-
-type FormInputs = {
-	todo: string;
-	tipo: string;
-	price: number;
-	date: string;
-	hour: string;
-	minutes: string;
-	observations: string;
-	upfrontPayment: string;
-
-	images?: FileList[];
-};
 
 const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 	const router = useRouter();
@@ -52,32 +39,28 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 
 		switch (type) {
 			case "Facial":
-				price = facial.find((treatment) => data.todo === treatment.treatment)?.price!;
+				price = facial.find((treatment) => data.todo === treatment.treatment)?.price;
 				break;
 			case "Capilar":
-				price = capilar.find((treatment) => data.todo === treatment.treatment)?.price!;
+				price = capilar.find((treatment) => data.todo === treatment.treatment)?.price;
 				break;
 			case "Corporal":
-				price = corporal.find((treatment) => data.todo === treatment.treatment)?.price!;
+				price = corporal.find((treatment) => data.todo === treatment.treatment)?.price;
 				break;
 			case "Aparatologia":
-				price = aparatologia.find((treatment) => data.todo === treatment.treatment)?.price!;
+				price = aparatologia.find((treatment) => data.todo === treatment.treatment)?.price;
 				break;
 			default:
 				break;
 		}
-		const { images, ...treatmentToSave } = data;
-
-		console.log(formData.getAll("minutes"));
-
-		console.log(images);
+		const { images } = data;
 
 		if (treatment?.id) {
 			formData.append("id", treatment?.id);
 		}
 		formData.append("price", price?.toString() || "");
 		if (images && typeof images === "string") {
-			console.log("Images es un string, no un array");
+			toast.error("Images es un string, no un array");
 		} else if (images instanceof FileList) {
 			if (images) {
 				for (let i = 0; i < images.length; i++) {
@@ -85,10 +68,10 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 				}
 			}
 		} else {
-			console.log("Images no es un FileList o un string");
+			toast.error("Images no es un FileList o un string");
 		}
 
-		const { ok, shift } = await createNewShift(formData, patientOrTreatmentId);
+		const { ok, shift } = await createNewShift(formData, patientOrTreatmentId!);
 
 		if (!ok) {
 			if (treatment?.id) {
@@ -116,10 +99,6 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 	};
 
 	useEffect(() => {
-		handleChangeDate(treatment?.date!);
-	}, [treatment]);
-
-	useEffect(() => {
 		const horarioEncontrado = availableTimes.find((h) => h.hora.toString() === selectedHour);
 
 		if (horarioEncontrado) {
@@ -132,7 +111,7 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 			);
 			setAvailableMinutes(leakedMinutes);
 		}
-	}, [selectedHour, type]);
+	}, [appointments, selectedHour, type]);
 
 	return (
 		<div className='flex items-center justify-center px-4 sm:px-6 lg:px-8 relative'>
@@ -245,61 +224,63 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 								/>
 							</div>
 						</div>
-						<div className='flex flex-col sm:flex-row sm:space-x-4'>
-							<div className='flex-1'>
-								<label
-									htmlFor='hour'
-									className='block text-sm font-medium text-gray-700'>
-									Hora
-								</label>
-								<div className='mt-1 relative rounded-md shadow-sm'>
-									<div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-										<FiClock className='h-5 w-5 text-gray-400' />
-									</div>
-									<select
-										className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-										name='hour'
-										defaultValue={treatment?.hour}
-										required
-										onChange={(e) => setSelectedHour(e.target.value)}
-										autoComplete='off'>
-										{availableTimes.map((horario) => (
-											<option key={horario.hora} value={horario.hora}>
-												{horario.hora}:00
-											</option>
-										))}
-									</select>
-								</div>
-							</div>
-							<div className='flex-1'>
-								<label
-									htmlFor='minutes'
-									className='block text-sm font-medium text-gray-700'>
-									Minutos
-								</label>
-								<div className='mt-1 relative rounded-md shadow-sm'>
-									<div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-										<FiClock className='h-5 w-5 text-gray-400' />
-									</div>
-									<select
-										className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-										name='minutes'
-										required
-										defaultValue={treatment?.minutes}
-										autoComplete='off'>
-										{availableMinutes.length > 0 ? (
-											availableMinutes.map((minuto, index) => (
-												<option key={index} value={minuto}>
-													{minuto < 10 ? `0${minuto}` : minuto}
+						{date && (
+							<div className='flex flex-col sm:flex-row sm:space-x-4'>
+								<div className='flex-1'>
+									<label
+										htmlFor='hour'
+										className='block text-sm font-medium text-gray-700'>
+										Hora
+									</label>
+									<div className='mt-1 relative rounded-md shadow-sm'>
+										<div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+											<FiClock className='h-5 w-5 text-gray-400' />
+										</div>
+										<select
+											className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+											name='hour'
+											defaultValue={treatment?.hour}
+											required
+											onChange={(e) => setSelectedHour(e.target.value)}
+											autoComplete='off'>
+											{availableTimes.map((horario) => (
+												<option key={horario.hora} value={horario.hora}>
+													{horario.hora}:00
 												</option>
-											))
-										) : (
-											<option>No hay minutos disponibles</option>
-										)}
-									</select>
+											))}
+										</select>
+									</div>
+								</div>
+								<div className='flex-1'>
+									<label
+										htmlFor='minutes'
+										className='block text-sm font-medium text-gray-700'>
+										Minutos
+									</label>
+									<div className='mt-1 relative rounded-md shadow-sm'>
+										<div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+											<FiClock className='h-5 w-5 text-gray-400' />
+										</div>
+										<select
+											className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+											name='minutes'
+											required
+											defaultValue={treatment?.minutes}
+											autoComplete='off'>
+											{availableMinutes.length > 0 ? (
+												availableMinutes.map((minuto, index) => (
+													<option key={index} value={minuto}>
+														{minuto < 10 ? `0${minuto}` : minuto}
+													</option>
+												))
+											) : (
+												<option>No hay minutos disponibles</option>
+											)}
+										</select>
+									</div>
 								</div>
 							</div>
-						</div>
+						)}
 					</div>
 					{treatment?.id && (
 						<div className='flex flex-col mb-2'>

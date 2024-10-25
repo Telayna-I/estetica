@@ -11,13 +11,16 @@ export const authConfig: NextAuthConfig = {
 	},
 
 	callbacks: {
+		authorized() {
+			return true;
+		},
 		jwt({ token, user }) {
 			if (user) {
 				token.data = user;
 			}
 			return token;
 		},
-		session({ session, token }) {
+		async session({ session, token }) {
 			session.user = token.data as any;
 			return session;
 		},

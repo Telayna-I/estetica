@@ -3,7 +3,6 @@ import { Title } from "@/app/components";
 import { ButtonOutline } from "@/app/components/button/ButtonOutline";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import React, { useState } from "react";
 import {
 	FaPhone,
 	FaVenusMars,
