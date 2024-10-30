@@ -54,11 +54,11 @@ export const AppointmentsTable = ({ appointments }: Props) => {
 
 	return (
 		<>
-			<div className='flex flex-col md:flex-row w-full rounded shadow transition-all mb-3 border p-5 bg-white items-center'>
-				<span className='mr-2 text-sm'>Filtro: </span>
+			<div className='flex flex-col md:flex-row w-full rounded shadow transition-all mb-3 border p-5 mt-5 bg-white items-center'>
+				<span className='mr-2 text-sm font-bold'>Filtrando por: </span>
 				<select
 					className={clsx(
-						"block w-full md:w-fit px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+						"block w-full md:w-fit px-2  border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
 					)}
 					name='hour'
 					required={true}
@@ -69,6 +69,7 @@ export const AppointmentsTable = ({ appointments }: Props) => {
 					<option value='semanal'>Semanal</option>
 					<option value='diario'>Diario</option>
 				</select>
+				{/* <span className='ml-10 font-thin text-black/10 '>Pega un tiro manco</span> */}
 			</div>
 
 			<div className='flex flex-col mt-5'>

@@ -67,8 +67,6 @@ const ShiftForm = ({ treatment, patientOrTreatmentId }: Props) => {
 					formData.append("images", images[i]);
 				}
 			}
-		} else {
-			toast.error("Images no es un FileList o un string");
 		}
 
 		const { ok, shift } = await createNewShift(formData, patientOrTreatmentId!);
