@@ -62,7 +62,7 @@ const SideNavigation = () => {
 						</Link>
 					</li>
 				))}
-				<button
+				{/* <button
 					onClick={() => {
 						logout();
 						toggleCollapse();
@@ -70,7 +70,7 @@ const SideNavigation = () => {
 					className='flex items-center w-full p-2 rounded-md transition-colors duration-200 hover:bg-gray-200'>
 					<span className='mr-3'>{<TbLogout size={18} />}</span>
 					{!isCollapsed && <span className='flex-grow text-left'>Salir</span>}
-				</button>
+				</button> */}
 			</ul>
 		</nav>
 	);

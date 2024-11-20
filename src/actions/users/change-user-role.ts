@@ -6,14 +6,14 @@ import { Role } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 export const changeUserRole = async (userId: string, role: string) => {
-	const session = await auth();
+	// const session = await auth();
 
-	if (session?.user.role !== "doctor") {
-		return {
-			ok: false,
-			message: "El usuario debe ser administrador.",
-		};
-	}
+	// if (session?.user.role !== "doctor") {
+	// 	return {
+	// 		ok: false,
+	// 		message: "El usuario debe ser administrador.",
+	// 	};
+	// }
 
 	try {
 		let newRole;

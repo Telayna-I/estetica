@@ -29,7 +29,7 @@ const shiftSchema = z.object({
 
 export const createNewShift = async (formData: FormData, patientOrTreatmentId: string) => {
 	const data = Object.fromEntries(formData);
-	const session = await auth();
+	// const session = await auth();
 
 	const parsedShift = shiftSchema.safeParse(data);
 
@@ -43,7 +43,8 @@ export const createNewShift = async (formData: FormData, patientOrTreatmentId: s
 
 	try {
 		const prismaTx = await prisma.$transaction(async () => {
-			const userId = session!.user.id;
+			// const userId = session?.user.id || "prueba";
+			const userId = "aee736a4-104c-4e78-b57e-f3d2580bd654";
 			let shift: Treatment;
 			const parsedPrice = Number(rest.price);
 			const parsedUpfrontPayment = Number(rest.upfrontPayment);

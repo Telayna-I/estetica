@@ -3,11 +3,11 @@ import { redirect } from "next/navigation";
 import SideNavigation from "../components/iaSidebar/NewSidebar";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-	const session = await auth();
+	// const session = await auth();
 
-	if (!session?.user) {
-		redirect("/auth/login");
-	}
+	// if (!session?.user) {
+	// 	redirect("/auth/login");
+	// }
 
 	return (
 		<div className='bg-principal overflow-y-scroll antialiased text-slate-300 selection:bg-blue-600 selection:text-white'>

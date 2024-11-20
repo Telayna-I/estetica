@@ -60,8 +60,6 @@ export const newPatient = async (formData: FormData) => {
 			return { patient };
 		});
 		revalidatePath("/pacientes");
-		// revalidatePath(`/admin/product/${product.slug}`);
-		// revalidatePath(`/products/${product.slug}`);
 		return { ok: true, patient: prismaTx.patient };
 	} catch (error) {
 		console.log(error);

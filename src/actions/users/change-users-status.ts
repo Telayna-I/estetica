@@ -5,14 +5,14 @@ import { auth } from "@/auth.config";
 import { revalidatePath } from "next/cache";
 
 export const changeUserStatus = async (userId: string, status: string) => {
-	const session = await auth();
+	// const session = await auth();
 
-	if (session?.user.role !== "doctor") {
-		return {
-			ok: false,
-			message: "El usuario debe ser administrador.",
-		};
-	}
+	// if (session?.user.role !== "doctor") {
+	// 	return {
+	// 		ok: false,
+	// 		message: "El usuario debe ser administrador.",
+	// 	};
+	// }
 
 	try {
 		const user = await prisma.user.update({

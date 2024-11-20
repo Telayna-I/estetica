@@ -6,13 +6,13 @@ import { redirect } from "next/navigation";
 import { UsersTable } from "./ui/UsersTable";
 
 export default async function UsersPage() {
-	const session = await auth();
+	// const session = await auth();
 
 	const { users } = await getAllUsers();
 
-	if (session?.user.role !== "doctor") {
-		redirect("/turnos");
-	}
+	// if (session?.user.role !== "doctor") {
+	// 	redirect("/turnos");
+	// }
 
 	return (
 		<>
